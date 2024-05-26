@@ -1,0 +1,15 @@
+<?php
+
+
+/**
+ * Implements hook_theme().
+ */
+function digital_on_theme($existing, $type, $theme, $path) {
+    return[
+        'do-listing' =>[
+            'variables' => ['content' => NULL]
+        ]
+
+    ];
+  
+}

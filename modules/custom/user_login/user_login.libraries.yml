@@ -1,0 +1,4 @@
+login:
+  version: 1.x
+  js:
+    js/user_login.js: {}

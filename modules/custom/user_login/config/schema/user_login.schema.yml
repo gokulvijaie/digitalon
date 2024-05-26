@@ -1,0 +1,17 @@
+user_login.settings:
+  type: config_entity
+  label: 'User Configuration'
+  mapping:
+    user_login:
+      type: sequence
+      sequence:
+        type: mapping
+        mapping:
+          username:
+            type: string
+          password:
+            type: string
+          status:
+            type: string
+          date:
+            type: string

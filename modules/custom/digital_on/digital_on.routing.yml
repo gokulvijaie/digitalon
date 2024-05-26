@@ -1,0 +1,14 @@
+digital_on.api_config:
+  path: '/admin/config/do-api'
+  defaults:
+    _form: '\Drupal\digital_on\Form\DoAPI'
+    _title: 'DO API - Settings'
+  requirements:
+    _permission: 'access content'
+digital_on.listing:
+  path: '/do-listing'
+  defaults:
+    _controller: '\Drupal\digital_on\Controller\DoListing::view'
+    _title: 'DigitalOn Listing'
+  requirements:
+    _permission: 'access content'

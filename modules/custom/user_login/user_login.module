@@ -1,0 +1,38 @@
+/**
+* Implements hook_theme().
+*/
+function hook_theme($existing, $type, $theme, $path) {
+return[
+    'user_login' => [
+        'variables' => ['items' => NULL],
+        'templete' => 'user-login',
+        'path' => \Drupal::service('extension.list.module')->getPath('user_login').'/templates',
+        ],
+    ];
+}
+
+/**
+* information about the classes and interfaces that make up the Block API.
+*/
+function hook_block_access(\Drupal\block\Entity\Block $block, $operation, \Drupal\Core\Session\AccountInterface $account) {
+    //Hide Block Condition.
+    if($operation == 'view'){
+        $current_user = \Drupal::currentUser();
+        $request = \Drupal::request();
+        $cookie_value = $request->cookies->get('user_value');
+        if((isset($cookie_value) && trim($cookie_value) !="") || ($current_user->id() > 0)) {
+            if(in_array($block->id(), ['channelsuserlogin'])){
+                return AccessResult::forbiddenIf(TRUE)->addCacheableDependency(&block);
+            }
+        } 
+        else {
+            if(in_array($block->id(), ['mainnavigation'])){
+                return AccessResult::forbiddenIf(TRUE)->addCacheableDependency(&block);
+            }
+            $current_path = \Drupal::service('path.current')->getPath();
+            if ($current_path == "/all-communications") {
+                throw new NotFoundHttpException();
+            }
+        }
+    }
+}

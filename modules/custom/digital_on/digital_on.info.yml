@@ -1,0 +1,5 @@
+name: DigitalOn API
+description: DigitalOn API Module.
+core_version_requirement: ^10 || ^11
+type: module 
+package: Custom

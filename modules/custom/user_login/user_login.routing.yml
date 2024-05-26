@@ -1,0 +1,36 @@
+user_login.login_configure_form:
+  path: '/admin/config/people/user'
+  defaults:
+    _form: '\Drupal\user_login\Form\ConfigureLogin'
+    _title: 'Custom users'
+  requirements:
+    _permission: 'administer user configuration'
+user_login.delete_user:
+  path: '/user_delete/{userkey}'
+  defaults:
+    _controller: '\Drupal\user_login\Controller\DeleteUser:deluser'
+    _title: 'Deleting the user'
+  requirements:
+    _permission: 'administer user configuration'   
+  options:
+    parameters:
+      userkey:
+        type: entity:user_login
+user_login.setcookie:
+  path: '/cookie_set/{userkey}'
+  defaults:
+    _controller: '\Drupal\user_login\Controller\UserCookie:setcookies'
+    _title: 'Setting the cookie'
+  requirements:
+    _role: 'anonymous'   
+  options:
+    parameters:
+      userkey:
+        type: entity:user_login       
+user_login.user_logout:
+  path: '/custom/user/logout'
+  defaults:
+    _controller: '\Drupal\user_login\Controller\UserCookie:userlogout'
+    _title: 'Logout Custom User'
+  requirements:
+    _permission: 'access content' 

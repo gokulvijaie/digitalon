@@ -1,0 +1,4 @@
+administer user cofiguration:
+  title: 'User configuration'
+  description: 'Permission for custom user configuration page.'
+  restrict access: TRUE

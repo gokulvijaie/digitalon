@@ -1,0 +1,4 @@
+services:
+  custom_services:
+    class: Drupal\user_login\CustomService
+    arguments: ['@entity_type.manager']

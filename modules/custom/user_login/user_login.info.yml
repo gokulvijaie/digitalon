@@ -1,0 +1,6 @@
+name: User Login
+description: User Login Module.
+core_version_requirement: ^9 || ^10
+type: module 
+dependencies:
+  - drupal:path_alias
