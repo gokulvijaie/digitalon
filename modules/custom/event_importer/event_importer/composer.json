@@ -1,0 +1,15 @@
+{
+    "name": "drupal/event_importer",
+    "type": "drupal-module",
+    "description": "Imports events from Eventbrite and provides a custom endpoint to display events.",
+    "require": {
+      "drupal/core": "^9 || ^10 || ^11",
+      "drush/drush": "^10.0 || ^11.0 || ^12.0",
+      "guzzlehttp/guzzle": "^6.5 || ^7.0"
+    },
+    "autoload": {
+      "psr-4": {
+        "Drupal\\event_importer\\": "src/"
+      }
+    }
+  }

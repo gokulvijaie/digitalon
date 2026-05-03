@@ -1,0 +1,10 @@
+name: 'Event Importer'
+type: module
+description: 'Provides a custom content type for events and imports events from Eventbrite.'
+core_version_requirement: ^9 || ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:text
+  - drupal:datetime
+  - drupal:link
