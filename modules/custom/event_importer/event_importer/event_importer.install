@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function event_importer_install() {
+  // Create the 'event' content type.
+  $content_type = [
+    'type' => 'event',
+    'name' => 'Event',
+    'description' => 'An event content type for storing event information.',
+    'status' => TRUE,
+    'promote' => FALSE,
+    'create_body' => FALSE,
+  ];
+  \Drupal\node\Entity\NodeType::create($content_type)->save();
+
+  // Add the necessary fields to the 'event' content type.
+  event_importer_add_fields();
+}
+
+/**
+ * Adds fields to the 'event' content type.
+ */
+function event_importer_add_fields() {
+  // Load the entity manager.
+  $entity_manager = \Drupal::entityTypeManager();
+
+  // Add the 'field_event_description' field.
+  if (!$entity_manager->getStorage('field_storage_config')->load('node.field_event_description')) {
+    \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_event_description',
+      'entity_type' => 'node',
+      'type' => 'text_long',
+    ])->save();
+    \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_event_description',
+      'entity_type' => 'node',
+      'bundle' => 'event',
+      'label' => 'Event Description',
+    ])->save();
+  }
+
+  // Add the 'field_event_start_date' field.
+  if (!$entity_manager->getStorage('field_storage_config')->load('node.field_event_start_date')) {
+    \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_event_start_date',
+      'entity_type' => 'node',
+      'type' => 'datetime',
+    ])->save();
+    \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_event_start_date',
+      'entity_type' => 'node',
+      'bundle' => 'event',
+      'label' => 'Event Start Date',
+    ])->save();
+  }
+
+  // Add the 'field_event_end_date' field.
+  if (!$entity_manager->getStorage('field_storage_config')->load('node.field_event_end_date')) {
+    \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_event_end_date',
+      'entity_type' => 'node',
+      'type' => 'datetime',
+    ])->save();
+    \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_event_end_date',
+      'entity_type' => 'node',
+      'bundle' => 'event',
+      'label' => 'Event End Date',
+    ])->save();
+  }
+
+  // Add the 'field_event_location' field.
+  if (!$entity_manager->getStorage('field_storage_config')->load('node.field_event_location')) {
+    \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_event_location',
+      'entity_type' => 'node',
+      'type' => 'text',
+    ])->save();
+    \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_event_location',
+      'entity_type' => 'node',
+      'bundle' => 'event',
+      'label' => 'Event Location',
+    ])->save();
+  }
+
+  // Add the 'field_event_url' field.
+  if (!$entity_manager->getStorage('field_storage_config')->load('node.field_event_url')) {
+    \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_event_url',
+      'entity_type' => 'node',
+      'type' => 'link',
+    ])->save();
+    \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_event_url',
+      'entity_type' => 'node',
+      'bundle' => 'event',
+      'label' => 'Event URL',
+    ])->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function event_importer_uninstall() {
+  // Remove the 'event' content type.
+  if ($content_type = \Drupal\node\Entity\NodeType::load('event')) {
+    $content_type->delete();
+  }
+}

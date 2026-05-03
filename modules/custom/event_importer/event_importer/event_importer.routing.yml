@@ -1,0 +1,7 @@
+event_importer.events:
+  path: '/events'
+  defaults:
+    _controller: '\Drupal\event_importer\Controller\EventController::getEvents'
+    _title: 'Events'
+  requirements:
+    _permission: 'access content'

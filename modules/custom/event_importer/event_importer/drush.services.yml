@@ -1,0 +1,5 @@
+services:
+  event_importer.command:
+    class: Drupal\event_importer\Command\EventImportCommand
+    tags:
+      - { name: drush.command }
